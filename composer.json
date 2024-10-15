@@ -92,7 +92,10 @@
           "symfony/phpunit-bridge": "^7.1"
         }
       },
-      "phpunit/phpunit": "^10.0"
+      "friendsofphp/php-cs-fixer": "^3.64",
+      "phpstan/phpstan": "^1.12",
+      "phpunit/phpunit": "^10.0",
+      "vincentlanglet/twig-cs-fixer": "^3.1"
     }
   }
 }

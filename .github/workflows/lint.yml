@@ -1,4 +1,4 @@
-name: Tests
+name: Lint
 run-name: Workflow started by @${{ github.actor }}
 
 on:
@@ -11,7 +11,7 @@ permissions:
     contents: read
 
 jobs:
-    phpunit:
+    linters:
         name: PHP ${{ matrix.php-version }} on ${{ matrix.operating-system }}
         runs-on: ${{ matrix.operating-system }}
         continue-on-error: false
@@ -28,8 +28,8 @@ jobs:
             -   name: Install PHP with extensions
                 uses: shivammathur/setup-php@v2
                 with:
-                    coverage: "pcov"
-                    extensions: "intl, mbstring, pdo_sqlite, zip"
+                    coverage: "none"
+                    extensions: "intl"
                     php-version: ${{ matrix.php-version }}
                     tools: composer:v2
 
@@ -48,15 +48,29 @@ jobs:
             -   name: Install dependencies
                 run: composer install --ansi --no-interaction --no-progress
 
-            -   name: PHPUnit version
-                run: tools/phpunit --version
+            -   name: Lint YAML files
+                run: ./bin/console lint:yaml config --parse-tags
 
-            -   name: Run tests with PHPUnit
-                run: tools/phpunit --coverage-clover build/logs/clover.xml
+            -   name: Lint TWIG templates
+                run: ./bin/console lint:twig templates --env=prod
 
-            -   name: Send coverage to Codecov
-                uses: codecov/codecov-action@v4
-                env:
-                    CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-                with:
-                    file: build/logs/clover.xml
+            -   name: Lint Parameters and Services
+                run: ./bin/console lint:container --no-debug
+
+            -   name: Lint Composer config
+                run: composer validate --strict
+
+            -   name: Check if any dependencies are compromised
+                run: composer audit
+
+            -   name: Run PHP-CS-Fixer
+                run: tools/php-cs-fixer fix --diff --dry-run
+
+            -   name: Run Twig-CS-Fixer
+                run: tools/twig-cs-fixer check --no-cache
+
+            -   name: Run PHPUnit
+                run: tools/phpunit
+
+            -   name: Run PHPStan
+                run: tools/phpstan analyze
