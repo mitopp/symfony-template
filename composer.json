@@ -1,10 +1,22 @@
 {
     "name": "mitopp/symfony-template",
-    "description": "A template for symfony projects",
+    "description": "A minimal template for symfony projects",
     "type": "project",
-    "license": "proprietary",
+    "license": "MIT",
     "minimum-stability": "stable",
     "prefer-stable": true,
+    "authors" :[
+        {
+            "name": "Michael Topp",
+            "email": "michael.topp@outlook.de",
+            "homepage": "https://codeschubser.de",
+            "role": "Developer"
+        }
+    ],
+    "keywords": [
+        "template",
+        "symfony"
+    ],
     "require": {
         "php": ">=8.2",
         "ext-ctype": "*",
