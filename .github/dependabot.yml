@@ -1,7 +1,7 @@
 version: 2
 
 updates:
-    # Symfony framework
+
     -   package-ecosystem: "composer"
         directory: "/"
         schedule:
@@ -19,3 +19,9 @@ updates:
             symfony:
                 patterns:
                     - "symfony/*" # Update all Symfony dependencies together
+
+    -   package-ecosystem: "github-actions"
+        directory: "/"
+        schedule:
+            interval: "daily" # Check for updates daily
+        open-pull-requests-limit: 10 # Limit pull requests opened by Dependabot
