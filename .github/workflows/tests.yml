@@ -1,0 +1,61 @@
+name: Tests
+
+on:
+    pull_request:
+
+env:
+    fail-fast: true
+
+permissions:
+    contents: read
+
+jobs:
+    phpunit:
+        name: PHP ${{ matrix.php-version }} on ${{ matrix.operating-system }}
+        runs-on: ${{ matrix.operating-system }}
+        continue-on-error: false
+
+        strategy:
+            matrix:
+                operating-system: [ 'ubuntu-latest' ]
+                php-version: [ '8.2', '8.3', '8.4' ]
+
+        steps:
+            -   name: Checkout code
+                uses: actions/checkout@v4
+
+            -   name: Install PHP with extensions
+                uses: shivammathur/setup-php@v2
+                with:
+                    coverage: "pcov"
+                    extensions: "intl, mbstring, pdo_sqlite, zip"
+                    php-version: ${{ matrix.php-version }}
+                    tools: composer:v2
+
+            -   name: Set composer cache directory
+                id: composer-cache
+                run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+                shell: bash
+
+            -   name: Cache composer
+                uses: actions/cache@v4
+                with:
+                    path: ${{ steps.composer-cache.outputs.dir }}
+                    key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
+                    restore-keys: ${{ runner.os }}-composer-
+
+            -   name: Install dependencies
+                run: composer install --ansi --no-interaction --no-progress
+
+            -   name: PHPUnit version
+                run: tools/phpunit --version
+
+            -   name: Run tests with PHPUnit
+                run: tools/phpunit --coverage-clover build/logs/clover.xml
+
+            -   name: Send coverage to Codecov
+                uses: codecov/codecov-action@v4
+                env:
+                    CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+                with:
+                    file: build/logs/clover.xml

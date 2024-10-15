@@ -12,3 +12,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial commit.
 - Add Dependabot configuration for Symfony framework. #1
 - Add Dependabot configuration for GitHub actions. #1
+- Add PHPUnit configuration and GitHub action.
