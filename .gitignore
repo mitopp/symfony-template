@@ -10,3 +10,4 @@
 ###< symfony/framework-bundle ###
 
 .phpunit.cache
+.php-cs-fixer.cache
