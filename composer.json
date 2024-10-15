@@ -93,7 +93,9 @@
         }
       },
       "friendsofphp/php-cs-fixer": "^3.64",
-      "phpunit/phpunit": "^10.0"
+      "phpstan/phpstan": "^1.12",
+      "phpunit/phpunit": "^10.0",
+      "vincentlanglet/twig-cs-fixer": "^3.1"
     }
   }
 }
