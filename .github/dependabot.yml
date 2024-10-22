@@ -21,7 +21,11 @@ updates:
                     - "symfony/*" # Update all Symfony dependencies together
 
     -   package-ecosystem: "composer"
-        directory: "/tools/*/"
+        directories:
+            - "/tools/.php-cs-fixer/"
+            - "/tools/.phpstan/"
+            - "/tools/.phpunit/"
+            - "/tools/.twig-cs-fixer/"
         schedule:
             interval: "daily" # Check for updates daily
         commit-message:
