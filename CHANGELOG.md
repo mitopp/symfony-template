@@ -16,3 +16,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Example for homepage. #7
 - GitHub action for linter workflow. #8
 - Logrotate for deprecations.
+- Dependabot configuration for tools.
