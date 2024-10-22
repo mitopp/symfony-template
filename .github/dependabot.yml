@@ -33,20 +33,6 @@ updates:
         allow:
             -   dependency-type: "all" # Allow both: direct and indirect updates for all packages
         open-pull-requests-limit: 10 # Limit pull requests opened by Dependabot
-        groups:
-            phpunit:
-                patterns:
-                    - "phpunit/*" # Update all PHPUnit dependencies together
-                    - "symfony/*" # Update all Symfony extension dependencies together
-            friendsofphp:
-                patterns:
-                    - "friendsofphp/*" # Update all PHP-CS-Fixer dependencies together
-            phpstan:
-                patterns:
-                    - "phpstan/*" # Update all PHPStan dependencies together
-            vincentlanglet:
-                patterns:
-                    - "vincentlanglet/*" # Update all Twig-CS-Fixer dependencies together
 
     -   package-ecosystem: "github-actions"
         directory: "/"
