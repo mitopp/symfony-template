@@ -18,6 +18,7 @@ return $config
         'array_syntax' => ['syntax' => 'short'],
         'no_unused_imports' => true,
         'trailing_comma_in_multiline' => true,
+        'nullable_type_declaration_for_default_null_value' => true,
     ])
     ->setFinder($finder)
 ;

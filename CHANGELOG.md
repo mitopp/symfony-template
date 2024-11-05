@@ -19,3 +19,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Dependabot configuration for tools.
 - Convert YAML configurations to PHP.
 - Readme: Added documentation for helpful scripts.
+- Github: Added PHP v8.4 to matrix.
