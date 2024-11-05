@@ -11,3 +11,7 @@ insert_final_newline = true
 trim_trailing_whitespace = true
 indent_size = 4
 indent_style = space
+
+[*.md]
+# Markdown uses two trailing spaces for explicit line breaks
+trim_trailing_whitespace = false
