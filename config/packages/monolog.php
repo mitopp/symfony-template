@@ -58,7 +58,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
                     'channels' => [
                         '!event',
                     ],
-                    'activation_strategy' => 400,
                 ],
                 'nested' => [
                     'type' => 'stream',
