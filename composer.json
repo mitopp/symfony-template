@@ -68,6 +68,33 @@
         "symfony/polyfill-php82": "*"
     },
     "scripts": {
+        "lint": [
+            "@lint-twig",
+            "@lint-yaml",
+            "@lint-container",
+            "@php-cs",
+            "@phpstan",
+            "@twig-cs"
+        ],
+        "fix": [
+            "@php-cs-fix",
+            "@twig-cs-fix"
+        ],
+        "lint-twig": "@php bin/console lint:twig templates",
+        "lint-yaml": "@php bin/console lint:yaml config",
+        "lint-container": [
+            "@php bin/console lint:container --env=dev",
+            "@php bin/console lint:container --env=test",
+            "@php bin/console lint:container --env=prod"
+        ],
+        "php-cs": "./tools/php-cs-fixer fix --verbose --diff --dry-run",
+        "php-cs-fix": "./tools/php-cs-fixer fix",
+        "phpstan": [
+            "@php bin/console cache:warmup --env=dev",
+            "./tools/phpstan analyse"
+        ],
+        "twig-cs": "./tools/twig-cs-fixer lint --verbose",
+        "twig-cs-fix": "./tools/twig-cs-fixer fix",
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"

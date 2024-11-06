@@ -18,3 +18,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Logrotate for deprecations.
 - Dependabot configuration for tools.
 - Convert YAML configurations to PHP.
+- Readme: Added documentation for helpful scripts.
